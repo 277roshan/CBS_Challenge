@@ -1,42 +1,33 @@
-// C program to print all permutations with duplicates allowed
 #include <stdio.h>
-#include <string.h>
+#include <math.h>
  
-/* Function to swap values at two pointers */
-void swap(char *x, char *y)
+void printPowerSet(char *set, int set_size)
 {
-    char temp;
-    temp = *x;
-    *x = *y;
-    *y = temp;
-}
+    /*set_size of power set of a set with set_size
+      n is (2**n -1)*/
+    unsigned int pow_set_size = pow(2, set_size);
+    int counter, j;
  
-/* Function to print permutations of string
-   This function takes three parameters:
-   1. String
-   2. Starting index of the string
-   3. Ending index of the string. */
-void permute(char *a, int l, int r)
-{
-   int i;
-   if (l == r)
-     printf("%s\n", a);
-   else
-   {
-       for (i = l; i <= r; i++)
+    /*Run from counter 000..0 to 111..1*/
+    for(counter = 0; counter < pow_set_size; counter++)
+    {
+      for(j = 0; j < set_size; j++)
        {
-          swap((a+l), (a+i));
-          permute(a, l+1, r);
-          swap((a+l), (a+i)); //backtrack
+          /* Check if jth bit in the counter is set
+             If set then pront jth element from set */
+          if(counter & (1<<j))
+            printf("%c", set[j]);
        }
-   }
+       printf("\n");
+    }
 }
-
-
-int main()                    
- {
-   	char str[] = "ABC";
-    int n = strlen(str);
-    permute(str, 0, n-1);
+ 
+/*Driver program to test printPowerSet*/
+int main()
+{
+    char set[] = {'a','b','c'};
+    printPowerSet(set, 3);
+ 
+    getchar();
     return 0;
- }
+}
