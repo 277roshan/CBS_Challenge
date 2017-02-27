@@ -17,9 +17,6 @@ struct Unique {
 	struct Unique * next;
 } unique;
 
-//(TODO: vijay, thapaliya) Put this data in text file and read from text file
-// Add the values in a char array e.g. [['11111', '1', '1', '1', '1'], more_values, more_values, more_values]
-
 
 // a = '''11111 1 1 1 1
 // 12222 1 2 2 2 
@@ -37,6 +34,19 @@ struct Unique {
 // 22224 4 2 2 2
 // 22225 4 3 3 3
 // 22226 4 4 4 4'''
+
+//(TODO: vijay, thapaliya) 
+
+// Put this data in text file and read from text file
+// Add the values in a char array e.g. [['11111', '1', '1', '1', '1'], more_values, more_values, more_values]
+
+
+// 1. Write a function to add each element from powerset to the subset struct
+
+// 2. Write a function to check unique elements in an array
+
+// 3. Write a function to add to Unique
+
 
 void printPowerSet(char *set, int set_size)
 {
