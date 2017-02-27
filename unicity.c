@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <math.h>
- 
+
+
+// Subset contains the particular value like a, b, c , abc, ab etc
+// For each value, check unique and add in unique_next field
+
 
 struct Subset {
 	char subset_val[50];
@@ -8,11 +12,14 @@ struct Subset {
 	struct Unique * unique_next;
 } subset;
 
-
 struct Unique {
 	char unique_val[50];
 	struct Unique * next;
 } unique;
+
+//(TODO: vijay, thapaliya) Put this data in text file and read from text file
+// Add the values in a char array e.g. [['11111', '1', '1', '1', '1'], more_values, more_values, more_values]
+
 
 // a = '''11111 1 1 1 1
 // 12222 1 2 2 2 
