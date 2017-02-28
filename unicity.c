@@ -17,7 +17,6 @@ struct Unique {
 	struct Unique * next;
 } unique;
 
-
 // a = '''11111 1 1 1 1
 // 12222 1 2 2 2 
 // 13333 2 1 3 3
@@ -42,10 +41,7 @@ struct Unique {
 
 
 // 1. Write a function to add each element from powerset to the subset struct
-
-// 2. Write a function to check unique elements in an array
-
-// 3. Write a function to add to Unique
+// Use hashmap
 
 
 void printPowerSet(char *set, int set_size)
