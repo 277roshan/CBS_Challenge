@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include "hashmap.h"
 
 // reading data from data.txt
 
@@ -10,8 +11,6 @@ void printPowerSet(char *set, int set_size)
 {
 
     // initiate hashmap
-
-    
 
     /*set_size of power set of a set with set_size
       n is (2**n -1)*/
