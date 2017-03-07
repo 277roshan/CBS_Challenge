@@ -75,7 +75,12 @@ int main()
       char line [ 128 ]; /* or other suitable maximum line size */
       while ( fgets ( line, sizeof line, file ) != NULL ) /* read a line */
       {
-         fputs ( line, stdout ); /* write the line */
+        fputs ( line, stdout ); /* write the line */
+
+        // main logic goes here get the different combinations and add to hashmap
+
+
+
       }
       fclose ( file );
    }
@@ -84,7 +89,7 @@ int main()
       perror ( filename ); /* why didn't the file open? */
    }
 
-  char set[] = {'a','b','c'};
-  printPowerSet(set, 3);
+  char set[] = {'1','2','3', '4'};
+  printPowerSet(set, 4);
   return 0;
 }
