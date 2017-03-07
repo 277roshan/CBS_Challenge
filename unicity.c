@@ -18,22 +18,7 @@ struct Unique {
 	struct Unique * next;
 } unique;
 
-// a = '''11111 1 1 1 1
-// 12222 1 2 2 2 
-// 13333 2 1 3 3
-// 14444 2 2 1 4
-// 15555 3 1 2 1
-// 16666 3 2 3 2
-// 17777 1 3 1 3
-// 18888 2 3 2 4
-// 19999 3 3 3 1
-// 20000 1 1 1 2
-// 21111 2 2 2 3
-// 22222 3 3 3 4
-// 22223 4 1 1 1
-// 22224 4 2 2 2
-// 22225 4 3 3 3
-// 22226 4 4 4 4'''
+// reading data from data.txt
 
 //(TODO: vijay, thapaliya) 
 
@@ -52,18 +37,41 @@ void printPowerSet(char *set, int set_size)
     unsigned int pow_set_size = pow(2, set_size);
     int counter, j;
  
+
+    
     /*Run from counter 000..0 to 111..1*/
     for(counter = 0; counter < pow_set_size; counter++)
     {
+      char subset_val[4];
+
+      int index = 0;
       for(j = 0; j < set_size; j++)
        {
           /* Check if jth bit in the counter is set
              If set then pront jth element from set */
-          if(counter & (1<<j))
-            printf("%c", set[j]);
+          if(counter & (1<<j)){
+            //printf("%c", set[j]);
+            subset_val[index] = set[j];
+            index ++;
+            // each index coming over here
+          }
+
+
        }
+
+       // Now based on index add values after reading from file
+       for (int i=0; i< index;i++){
+        printf("%c",subset_val[i]);
+       }
+
+
+       index = 0;
        printf("\n");
+
     }
+
+    
+
 }
  
 /*Driver program to test printPowerSet*/
@@ -84,7 +92,7 @@ int main()
         // from each line now we read word by word
         while(p != NULL)
         {
-          printf("%s\n ",p); /* your word */
+          //printf("%s\n ",p); /* your word */
           p = strtok(NULL," ");
         }
         // main logic goes here get the different combinations and add to hashmap
@@ -98,6 +106,6 @@ int main()
    }
 
   char set[] = {'1','2','3', '4'};
-  //printPowerSet(set, 4);
+  printPowerSet(set, 4);
   return 0;
 }
