@@ -2,33 +2,9 @@
 #include <math.h>
 #include <string.h>
 
-
-// Subset contains the particular value like a, b, c , abc, ab etc
-// For each value, check unique and add in unique_next field
-
-
-struct Subset {
-	char subset_val[50];
-	struct Subset * next;
-	struct Unique * unique_next;
-} subset;
-
-struct Unique {
-	char unique_val[50];
-	struct Unique * next;
-} unique;
-
 // reading data from data.txt
 
 //(TODO: vijay, thapaliya) 
-
-// Put this data in text file and read from text file
-// Add the values in a char array e.g. [['11111', '1', '1', '1', '1'], more_values, more_values, more_values]
-
-
-// 1. Write a function to add each element from powerset to the subset struct
-// Use hashmap
-
 
 void printPowerSet(char *set, int set_size)
 {
