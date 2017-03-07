@@ -80,15 +80,14 @@ int main()
         //fputs ( line, stdout ); /* write the line */
         
         p = strtok(line," ");
+
+        // from each line now we read word by word
         while(p != NULL)
         {
           printf("%s\n ",p); /* your word */
           p = strtok(NULL," ");
         }
         // main logic goes here get the different combinations and add to hashmap
-
-
-
 
       }
       fclose ( file );
