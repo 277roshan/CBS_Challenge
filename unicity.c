@@ -7,10 +7,13 @@
 
 //(TODO: vijay, thapaliya) 
 
-void printPowerSet(char *set, int set_size)
+map_t* printPowerSet(char *set, int set_size)
 {
 
     // initiate hashmap
+
+    map_t* power_set_hashmap;
+    power_set_hashmap = hashmap_new();
 
     /*set_size of power set of a set with set_size
       n is (2**n -1)*/
@@ -40,6 +43,11 @@ void printPowerSet(char *set, int set_size)
        
        // Add null terminating character at the end
        subset_val[index] = '\0';
+
+       map_t* unicity_hashmap;
+       unicity_hashmap = hashmap_new();
+       hashmap_put(power_set_hashmap,subset_val,unicity_hashmap);
+
        printf("%s\n",subset_val);
 
 
@@ -50,19 +58,30 @@ void printPowerSet(char *set, int set_size)
        //reset subset_val and index
        subset_val[0] = '\0';
        index = 0;
-       
-       
        printf("\n");
-    
     }
+
+    return power_set_hashmap;
 
 }
  
 /*Driver program to test printPowerSet*/
 int main()
 {
+
+
+ char set[] = {'1','2','3', '4'};
+  map_t* power_set_hashmap;
+
+  // contains the hashmap a:unicity hashmap, ab: unicity hashmap etc...
+  // iterate this and keep adding unique values by reading from file
+
+
+  power_set_hashmap = printPowerSet(set, 4); 
  static const char filename[] = "data.txt";
+
    FILE *file = fopen ( filename, "r" );
+
    if ( file != NULL )
    {
       char line [ 128 ]; /* or other suitable maximum line size */
@@ -86,7 +105,6 @@ int main()
       perror ( filename ); /* why didn't the file open? */
    }
 
-  char set[] = {'1','2','3', '4'};
-  printPowerSet(set, 4);
+  
   return 0;
 }
