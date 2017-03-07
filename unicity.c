@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
 
 // Subset contains the particular value like a, b, c , abc, ab etc
@@ -73,11 +74,19 @@ int main()
    if ( file != NULL )
    {
       char line [ 128 ]; /* or other suitable maximum line size */
+      char *p = NULL;
       while ( fgets ( line, sizeof line, file ) != NULL ) /* read a line */
       {
-        fputs ( line, stdout ); /* write the line */
-
+        //fputs ( line, stdout ); /* write the line */
+        
+        p = strtok(line," ");
+        while(p != NULL)
+        {
+          printf("%s\n ",p); /* your word */
+          p = strtok(NULL," ");
+        }
         // main logic goes here get the different combinations and add to hashmap
+
 
 
 
@@ -90,6 +99,6 @@ int main()
    }
 
   char set[] = {'1','2','3', '4'};
-  printPowerSet(set, 4);
+  //printPowerSet(set, 4);
   return 0;
 }
