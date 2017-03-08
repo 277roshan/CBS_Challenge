@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include <stdlib.h>
 #include "hashmap.h"
 
 // reading data from data.txt
@@ -9,10 +10,8 @@
 
 map_t* printPowerSet(char *set, int set_size)
 {
-
     // initiate hashmap
-
-    map_t* power_set_hashmap;
+    any_t power_set_hashmap;
     power_set_hashmap = hashmap_new();
 
     /*set_size of power set of a set with set_size
@@ -37,23 +36,26 @@ map_t* printPowerSet(char *set, int set_size)
             // each index coming over here
           }
        }
-
-       
-       // Now based on index add values after reading from file
-       
+       // Now based on index add values after reading from file 
        // Add null terminating character at the end
        subset_val[index] = '\0';
 
-       map_t* unicity_hashmap;
+       any_t unicity_hashmap;
        unicity_hashmap = hashmap_new();
-       hashmap_put(power_set_hashmap,subset_val,unicity_hashmap);
+       
 
-       printf("%s\n",subset_val);
+       char* x;
+       x = malloc ( 5 * sizeof (char));
+       strcpy(x, subset_val);
+       hashmap_put(power_set_hashmap,(char *)x,unicity_hashmap);
 
 
-       for (int i=0; i< index;i++){
-        printf("%c",subset_val[i]);
-       }
+       //printf("%s\n",subset_val);
+
+
+       // for (int i=0; i< index;i++){
+       //  printf("%c",subset_val[i]);
+       // }
 
        //reset subset_val and index
        subset_val[0] = '\0';
@@ -65,19 +67,34 @@ map_t* printPowerSet(char *set, int set_size)
 
 }
  
+int f(item, val){
+    return MAP_OK;
+   }
+
 /*Driver program to test printPowerSet*/
 int main()
 {
 
 
  char set[] = {'1','2','3', '4'};
-  map_t* power_set_hashmap;
+ 
 
   // contains the hashmap a:unicity hashmap, ab: unicity hashmap etc...
   // iterate this and keep adding unique values by reading from file
 
+  
+ any_t power_set_hashmap;
+ power_set_hashmap = printPowerSet(set, 4); 
 
-  power_set_hashmap = printPowerSet(set, 4); 
+ any_t unicity_val;
+ printf("%p\n", unicity_val);
+ hashmap_iterate(power_set_hashmap,f, unicity_val);
+ //printf("%p\n", power_set_hashmap);
+
+
+
+
+
  static const char filename[] = "data.txt";
 
    FILE *file = fopen ( filename, "r" );

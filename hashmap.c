@@ -252,16 +252,27 @@ int hashmap_put(map_t in, char* key, any_t value){
 
 	/* Find a place to put our value */
 	index = hashmap_hash(in, key);
+
 	while(index == MAP_FULL){
 		if (hashmap_rehash(in) == MAP_OMEM) {
 			return MAP_OMEM;
 		}
 		index = hashmap_hash(in, key);
+		
+
+
+
 	}
 
 	/* Set the data */
 	m->data[index].data = value;
+
+
+
 	m->data[index].key = key;
+	
+
+
 	m->data[index].in_use = 1;
 	m->size++; 
 
@@ -312,6 +323,7 @@ int hashmap_iterate(map_t in, PFany f, any_t item) {
 
 	/* Cast the hashmap */
 	hashmap_map* m = (hashmap_map*) in;
+	
 
 	/* On empty hashmap, return immediately */
 	if (hashmap_length(m) <= 0)
@@ -320,7 +332,16 @@ int hashmap_iterate(map_t in, PFany f, any_t item) {
 	/* Linear probing */
 	for(i = 0; i< m->table_size; i++)
 		if(m->data[i].in_use != 0) {
+
+			hashmap_element a = m->data[i];
+
+			printf("%s\n",a.key);
+
 			any_t data = (any_t) (m->data[i].data);
+	
+
+			// printf("%p\n", data);
+
 			int status = f(item, data);
 			if (status != MAP_OK) {
 				return status;
