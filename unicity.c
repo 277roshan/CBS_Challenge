@@ -57,6 +57,7 @@ map_t* printPowerSet(char *set, int set_size)
 
 }
  
+
 int f(item, val){  
     return MAP_OK;
    }
@@ -81,6 +82,8 @@ int main()
  PFany foo = &f;
 
  hashmap_iterate(power_set_hashmap, foo, extra);
+ hashmap_iterate_print(power_set_hashmap, foo, extra);
+ 
 
   
   return 0;
