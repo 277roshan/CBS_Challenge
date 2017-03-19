@@ -35,9 +35,6 @@ typedef struct _hashmap_map{
 	hashmap_element *data;
 } hashmap_map;
 
-
-
-
 /*
  * PFany is a pointer to a function that can take two any_t arguments
  * and return an integer. Returns status code..

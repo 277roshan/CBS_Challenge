@@ -332,20 +332,64 @@ int hashmap_iterate(map_t in, PFany f, any_t item) {
 	/* Linear probing */
 	for(i = 0; i< m->table_size; i++)
 		if(m->data[i].in_use != 0) {
+			any_t val = (any_t) (m->data[i].data);
+			char * combination;
+			combination = (char*)m->data[i].key;
+			printf("%s----\n", combination);
 
-			hashmap_element a = m->data[i];
+	static const char filename[] = "data.txt";
 
-			printf("%s\n",a.key);
+   FILE *file = fopen ( filename, "r" );
 
-			any_t data = (any_t) (m->data[i].data);
-	
+   if ( file != NULL )
+   {
+      char line [ 128 ]; /* or other suitable maximum line size */
+      char *p = NULL;
+      while ( fgets ( line, sizeof line, file ) != NULL ) /* read a line */
+      {
+        //fputs ( line, stdout ); /* write the line */
+        p = strtok(line," ");
+        // from each line now we read word by word
+        
+        char to_add[5];
+		int uo = 0;
+		p = strtok(NULL," ");
+        while(p != NULL)
+        {
+      
 
-			// printf("%p\n", data);
+          		char g = *p;
+          		
+            	to_add[uo] = g;
+            	uo++;
+          	
 
-			int status = f(item, data);
+          p = strtok(NULL," ");
+          
+        } 
+      to_add[uo] = '\0';
+      char * final;
+      final = malloc ( 5 * sizeof (char));
+
+      for (int j = 0; combination[j] != '\0'; j++){
+      	char g = combination[j];
+		int value_to_use = atoi(&g);
+		final[j] = to_add[value_to_use-1];
+      }
+
+      printf("%s\n", final);       
+  }
+
+      fclose ( file );
+   }
+   else
+   {
+      perror ( filename ); /* why didn't the file open? */
+   }
+			int status = f(item, val);
 			if (status != MAP_OK) {
 				return status;
-			}
+			}			
 		}
 
     return MAP_OK;

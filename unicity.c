@@ -48,26 +48,16 @@ map_t* printPowerSet(char *set, int set_size)
        x = malloc ( 5 * sizeof (char));
        strcpy(x, subset_val);
        hashmap_put(power_set_hashmap,(char *)x,unicity_hashmap);
-
-
-       //printf("%s\n",subset_val);
-
-
-       // for (int i=0; i< index;i++){
-       //  printf("%c",subset_val[i]);
-       // }
-
-       //reset subset_val and index
        subset_val[0] = '\0';
        index = 0;
-       printf("\n");
+       
     }
 
     return power_set_hashmap;
 
 }
  
-int f(item, val){
+int f(item, val){  
     return MAP_OK;
    }
 
@@ -86,41 +76,11 @@ int main()
  any_t power_set_hashmap;
  power_set_hashmap = printPowerSet(set, 4); 
 
- any_t unicity_val;
- printf("%p\n", unicity_val);
- hashmap_iterate(power_set_hashmap,f, unicity_val);
- //printf("%p\n", power_set_hashmap);
+ any_t extra;
+ 
+ PFany foo = &f;
 
-
-
-
-
- static const char filename[] = "data.txt";
-
-   FILE *file = fopen ( filename, "r" );
-
-   if ( file != NULL )
-   {
-      char line [ 128 ]; /* or other suitable maximum line size */
-      char *p = NULL;
-      while ( fgets ( line, sizeof line, file ) != NULL ) /* read a line */
-      {
-        //fputs ( line, stdout ); /* write the line */
-        p = strtok(line," ");
-        // from each line now we read word by word
-        while(p != NULL)
-        {
-          //printf("%s\n ",p); /* your word */
-          p = strtok(NULL," ");
-        }
-        // main logic goes here get the different combinations and add to hashmap
-      }
-      fclose ( file );
-   }
-   else
-   {
-      perror ( filename ); /* why didn't the file open? */
-   }
+ hashmap_iterate(power_set_hashmap, foo, extra);
 
   
   return 0;
