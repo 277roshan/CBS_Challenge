@@ -394,8 +394,11 @@ int hashmap_iterate(map_t in, PFany f, any_t item) {
       if(st2 == MAP_MISSING){
       	int st = hashmap_put( m->data[i].data,final, (any_t)g);
       }
-      if(st2 == MAP_OK){
+      else if(st2 == MAP_OK){
       	*g = 100;
+      	int st = hashmap_put( m->data[i].data,final, (any_t)g);
+      }
+      else{
       	int st = hashmap_put( m->data[i].data,final, (any_t)g);
       }
      
